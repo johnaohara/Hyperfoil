@@ -30,10 +30,12 @@ public class ServiceLoadedBuilderProvider<B> {
    private final BaseSequenceBuilder parent;
 
    public static synchronized Map<String, BuilderInfo<?>> builders(Class<?> clazz) {
+      System.out.println(Thread.currentThread().getName());
       return BUILDERS.computeIfAbsent(clazz, ServiceLoadedBuilderProvider::scanBuilders);
    }
 
    private static Map<String, BuilderInfo<?>> scanBuilders(Class<?> clazz) {
+      System.out.println(Thread.currentThread().getName());
       Map<String, BuilderInfo<?>> builders = new HashMap<>();
       Set<Class<?>> included = new HashSet<>();
       ArrayDeque<BuilderInfo<Object>> deque = new ArrayDeque<>();
